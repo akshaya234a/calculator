@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+  <style>
+    /* CSS Styles */
+    .calculator {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 5px;
+      padding: 10px;
+    }
+
+    .display {
+      grid-column: span 4;
+      background-color: #f3f3f3;
+      text-align: right;
+      padding: 10px;
+    }
+
+    button {
+      padding: 15px;
+      font-size: 18px;
+      background-color: #e0e0e0;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #c0c0c0;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <!-- Display Screen -->
+    <div class="display" id="display">0</div>
+
+    <!-- Calculator Buttons -->
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="appendToDisplay('7')">7</button>
+    <button onclick="appendToDisplay('8')">8</button>
+    <button onclick="appendToDisplay('9')">9</button>
+    <button onclick="appendToDisplay('/')">/</button>
+    <button onclick="appendToDisplay('4')">4</button>
+    <button onclick="appendToDisplay('5')">5</button>
+    <button onclick="appendToDisplay('6')">6</button>
+    <button onclick="appendToDisplay('*')">*</button>
+    <button onclick="appendToDisplay('1')">1</button>
+    <button onclick="appendToDisplay('2')">2</button>
+    <button onclick="appendToDisplay('3')">3</button>
+    <button onclick="appendToDisplay('-')">-</button>
+    <button onclick="appendToDisplay('0')">0</button>
+    <button onclick="calculate()">=</button>
+    <button onclick="appendToDisplay('+')">+</button>
+  </div>
+
+  <!-- JavaScript (Optional if you have it in a separate file) -->
+  <script>
+    let displayValue = '';
+
+    function appendToDisplay(value) {
+      displayValue += value;
+      document.getElementById('display').innerText = displayValue;
+    }
+
+    function clearDisplay() {
+      displayValue = '';
+      document.getElementById('display').innerText = '0';
+    }
+
+    function calculate() {
+      try {
+        const result = eval(displayValue);
+        document.getElementById('display').innerText = result;
+        displayValue = result.toString();
+      } catch (error) {
+        document.getElementById('display').innerText = 'Error';
+        displayValue = '';
+      }
+    }
+  </script>
+</body>
+</html>
